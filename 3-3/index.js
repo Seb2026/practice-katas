@@ -9,12 +9,12 @@ function domainName(url) {
 
   if (url.indexOf("//") > -1) {
     hostname = url.split("/")[2];
-  } else if (url.indexOf("www.") > -1) {
-    hostname = url.split("www.")[1];
   } else {
     hostname = url.split("/")[0];
   }
-
+  if (url.indexOf("www.") > -1) {
+    hostname = url.split("www.")[1];
+  }
   //find & remove port number
   hostname = hostname.split(":")[0];
   //find & remove "?"
@@ -23,4 +23,12 @@ function domainName(url) {
   hostname = hostname.split(".")[0];
 
   return hostname;
+}
+
+// recommended solution:
+function domainName(url) {
+  url = url.replace("https://", "");
+  url = url.replace("http://", "");
+  url = url.replace("www.", "");
+  return url.split(".")[0];
 }
