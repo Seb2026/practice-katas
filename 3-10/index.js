@@ -22,3 +22,12 @@ function dashatize(num) {
   num = num[num.length - 1] === "-" ? num.slice(0, num.length - 1) : num;
   return num;
 }
+
+// best practice:
+
+function dashatize(num) {
+  return String(num)
+    .replace(/([13579])/g, "-$1-")
+    .replace(/--+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
